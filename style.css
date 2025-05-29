@@ -19,6 +19,15 @@
         max-width: 100%;
         display: block;
     }
+
+    ul {
+        list-style: none;
+    }
+
+    a {
+        text-decoration: none;
+        color: currentColor;
+    }
 }
 
 @layer layout {
@@ -37,5 +46,96 @@
 }
 
 @layer navigation {
-    
+    .nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        margin-block-start: calc(28 / 16 * 1rem);
+
+        .nav__overlay {
+            position: fixed;
+            inset: 0;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1;
+
+            display: none;
+        }
+
+        .nav__menu {
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: calc(256 / 16 * 1rem);
+            height: 100svh;
+            padding-inline: calc(24 / 16 * 1rem);
+            z-index: 2;
+
+            background-color: #FFFDFA;
+
+            translate: 100% 0;
+            transition: translate 0.5s ease-in-out;
+
+            @media (width >= 40em) {
+                position: static;
+                translate: 0;
+                width: auto;
+                height: auto;
+            }
+
+            @media (width < 40em) and (prefers-reduced-motion) {
+                translate: 0;
+                opacity: 0;
+                transition: opacity 500ms ease-in-out;
+            }
+        }
+
+        .nav__links { 
+            display: flex;
+            flex-direction: column;
+            gap: calc(24 / 16 * 1rem);
+
+            @media (width >= 40em) {
+                flex-direction: row;
+            }
+        }
+
+        .nav__open {
+            @media (width >= 40em) {
+                display: none;
+            }
+        }
+
+        .nav__open[aria-expanded='true'] ~ .nav__menu {
+            translate: 0;
+
+            @media (prefers-reduced-motion) {
+                opacity: 1;
+            }
+        }
+
+        .nav__open[aria-expanded='true'] ~ .nav__overlay {
+            display: block;
+        }
+
+        .nav__close {
+            display: block;
+            margin-inline-start: auto;
+            margin-block-start: calc(27 / 16 * 1rem);
+            margin-block-end: calc(86 / 16 * 1rem);
+            background: none;
+
+            @media (width >= 40em) {
+                display: none;
+            }
+        }
+
+        @media (width >= calc(1110 / 16 * 1rem)) {
+            .nav__links {
+                display: flex;
+                gap: calc(40 / 16 * 1rem);
+            }
+        }
+
+    }
 }
