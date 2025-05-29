@@ -1,0 +1,41 @@
+@layer global {
+    *,
+    *::before,
+    *::after {
+        margin: 0;
+        padding: 0;
+        border: 0;
+        box-sizing: border-box;
+    }
+
+    html {
+        -moz-text-size-adjust: none;
+        -webkit-text-size-adjust: none;
+        text-size-adjust: none;
+    }
+
+    img,
+    picture {
+        max-width: 100%;
+        display: block;
+    }
+}
+
+@layer layout {
+    body {
+        display: grid;        
+        grid-template-columns: calc(16 / 16 * 1rem) 1fr calc(16 / 16 * 1rem);
+
+        > * {
+            grid-column: 2;
+        }
+
+        @media (width >= calc(1110 / 16 * 1rem)) {
+            grid-template-columns: 1fr calc(1100 / 16 * 1rem) 1fr;
+        }
+    }
+}
+
+@layer navigation {
+    
+}
