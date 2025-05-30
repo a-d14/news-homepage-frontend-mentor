@@ -9,8 +9,8 @@ function setUpNav(e) {
         navMenu.setAttribute('inert', '');
         navMenu.style.transition='none';
     } else {
-        navMenu.removeAttribute('inert');
         closeMobileMenu();
+        navMenu.removeAttribute('inert');
     }
 }
 

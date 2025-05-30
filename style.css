@@ -1,3 +1,47 @@
+@layer fonts {
+    @font-face {
+        font-family: 'Inter Regular';
+        src: url("assets/fonts/static/Inter-Regular.ttf");
+    }
+    @font-face {
+        font-family: 'Inter Bold';
+        src: url("assets/fonts/static/Inter-Bold.ttf");
+    }
+    @font-face {
+        font-family: 'Inter Extra Bold';
+        src: url("assets/fonts/static/Inter-ExtraBold.ttf");
+    }
+}
+
+@layer colors {
+    :root {
+        --almost-white: #FFFDFA;
+        --dark-space-blue: #00001A;
+        --gunmetal: #5E607A;
+        --light-vermillion: #F15D51;
+        --silver: #C5C6CE;
+        --yellow: #E9AA52;
+    }
+}
+
+@layer typography {
+    :root {
+        --fs-xl: calc(56 / 16 * 1rem);
+        --fs-lg: calc(40 / 16 * 1rem);
+        --fs-md: calc(32 / 16 * 1rem);
+        --fs-sm: calc(20 / 16 * 1rem);
+        --fs-xs: calc(18 / 16 * 1rem);
+        --fs-xxs: calc(15 / 16 * 1rem);
+
+        --lh-xl: calc(56 / 16 * 1rem);
+        --lh-lg: calc(40 / 16 * 1rem);
+        --lh-md: calc(32 / 16 * 1rem);
+        --lh-sm: calc(24 / 16 * 1rem);
+        --lh-xs: calc(24 / 16 * 1rem);
+        --lh-xxs: calc(26 / 16 * 1rem);
+    }
+}
+
 @layer global {
     *,
     *::before,
@@ -28,6 +72,12 @@
         text-decoration: none;
         color: currentColor;
     }
+
+    p {
+        font-family: 'Inter Regular' , serif;
+        font-size: var(--fs-xxs);
+        line-height: var(--lh-xxs);
+    }
 }
 
 @layer layout {
@@ -51,7 +101,7 @@
         justify-content: space-between;
         align-items: center;
 
-        margin-block-start: calc(28 / 16 * 1rem);
+        margin-block: calc(28 / 16 * 1rem);
 
         .nav__overlay {
             position: fixed;
@@ -100,6 +150,20 @@
             }
         }
 
+        .nav__item {
+            color: var(--gunmetal);
+            font-family: 'Inter Regular', sans-serif;
+            font-size: var(--fs-xs);
+
+            @media (width > 40em) {
+                font-size: var(--fs-xxs);
+            }
+        }
+
+        .nav__item:hover {
+            color: var(--light-vermillion);
+        }
+
         .nav__open {
             @media (width >= 40em) {
                 display: none;
@@ -137,5 +201,159 @@
             }
         }
 
+    }
+}
+
+@layer hero {
+    .hero {
+        display: grid;
+        gap: calc(64 / 16 * 1rem);
+        margin-block-end: calc(64 / 16 * 1rem);
+
+        .top-story {
+            display: grid;
+            gap: calc(24 / 16 * 1rem);
+
+            .top-story__image {
+                img {
+                    width: 100%;
+                    height: auto;
+                }
+            }
+
+            .top-story__content {
+                h1 {
+                    font-family: 'Inter Extra Bold', serif;
+                    font-size: var(--fs-lg);
+                    line-height: var(--lh-lg);
+        
+                    @media (width >= 40em) {
+                        font-size: var(--fs-xl);
+                        line-height: var(--lh-xl);
+                    }
+                }
+
+                p {
+                    margin-block-start: calc(16 / 16 * 1rem);
+                    color: var(--gunmetal);
+                }
+            }
+
+            .top-story__cta {
+                padding: calc(13 / 16 * 1rem) calc(35 / 16 * 1rem);
+                background-color: var(--light-vermillion);
+                color: var(--dark-space-blue);
+                text-transform: uppercase;
+                font-family: 'Inter Bold' , serif;
+                line-height: var(--lh-xs);
+                letter-spacing: 4.38px;
+                width: fit-content;
+            }
+        }
+
+        .new-stories {
+            background-color: var(--dark-space-blue);
+            padding: calc(24 / 16 * 1rem) calc(20 / 16 * 1rem);
+
+            h2 {
+                font-family: 'Inter Bold', serif;
+                font-size: var(--fs-md);
+                line-height: var(--lh-md);
+                color: var(--yellow);
+                margin-block-end: calc(35 / 16 * 1rem);
+            }
+
+            .new-story {
+                padding-block: calc(30 / 16 * 1rem);
+                border-bottom: 1px solid var(--gunmetal);
+
+                h3 {
+                    font-family: 'Inter Extra Bold' , serif;
+                    font-size: var(--fs-sm);
+                    line-height: var(--lh-sm);
+                    color: var(--almost-white);
+
+                    cursor: pointer;
+                }
+
+                h3:hover {
+                    color: var(--yellow);
+                }
+
+                p {
+                    margin-block-start: calc(8 / 16 * 1rem);
+                    color: var(--silver);
+                }
+            }
+
+            .new-story:first-child {
+                padding-block-start: 0;
+            }
+
+            .new-story:last-child {
+                padding-block-end: 0;
+                border-bottom: none; 
+            }
+        }
+        
+    }
+
+}
+
+@layer more-stories {
+    .more-stories {
+        display: grid;
+        gap: calc(32 / 16 * 1rem);
+
+        li {
+            display: grid;
+            grid-template-columns: calc(100 / 16 * 1rem) 1fr;
+            column-gap: calc(24 / 16 * 1rem);
+
+            img {
+                width: 100%;
+                height: auto;
+                object-fit: cover;
+            }
+
+            .story-content {
+                display: grid;
+                gap: calc(12 / 16 * 1rem);
+                
+                span {
+                    font-family: 'Inter Bold', serif;
+                    font-size: var(--fs-md);
+                    line-height: var(--lh-md);
+                    color: var(--light-vermillion);
+                }
+
+                h3 {
+                    font-family: 'Inter Extra Bold', serif;
+                    font-size: var(--fs-xs);
+                    line-height: var(--lh-xs);
+                    color: var(--dark-space-blue);
+
+                    cursor: pointer;
+                }
+
+                h3:hover {
+                    color: var(--light-vermillion);
+                }
+
+                p {
+                    color: var(--gunmetal);
+                }
+            }
+            
+        }
+    }
+}
+
+@layer footer {
+    footer {
+        text-align: center;
+        margin-block: calc(24 / 16 * 1rem);
+        font-family: 'Inter Regular' ,serif;
+        font-size: calc(12 / 16 * 1rem);
     }
 }
